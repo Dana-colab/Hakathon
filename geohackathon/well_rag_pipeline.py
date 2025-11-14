@@ -370,9 +370,9 @@ def extract_nodal_inputs(text: str, params: Dict[str, Any]) -> Dict[str, float]:
             )
         except:
             # Brine typical density
-            nodal_inputs['fluid_density_kg_m3'] = 1050.0
+            nodal_inputs['fluid_density_kg_m3'] = 1000.0  # aligned with NodalAnalysis.py (rho)
     else:
-        nodal_inputs['fluid_density_kg_m3'] = 1050.0
+        nodal_inputs['fluid_density_kg_m3'] = 1000.0  # aligned with NodalAnalysis.py (rho)
     
     # Fluid viscosity (cP)
     if params.get('fluid_viscosity_cp'):
@@ -397,7 +397,7 @@ def extract_nodal_inputs(text: str, params: Dict[str, Any]) -> Dict[str, float]:
         nodal_inputs['reservoir_temperature_c'] = 80.0
     
     # Depth (meters) - for pressure calculations
-    depth_m = 2000.0  # default
+    depth_m = 500.0  # default aligned with NodalAnalysis.py (esp_depth)
     if params.get('pump_intake_depth_m'):
         try:
             depth_m = parse_depth(params['pump_intake_depth_m'])
